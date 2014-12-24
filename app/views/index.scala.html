@@ -1,0 +1,43 @@
+@(forms: List[FormData])
+
+@main("Form Server") {
+
+    <h2>New Form</h2>
+
+    <form action="/forms" method="POST">
+        <label for="name">Name</label>
+        <br>
+        <input type="text" id="name" name="name">
+        <br><br>
+        <label for="description">Description</label>
+        <br>
+        <input type="text" id="description" name="description">
+        <br><br>
+        <label for="schema">Schema</label>
+        <br>
+        <textarea rows="10" id="schema" name="schema"></textarea>
+        <br>
+        <button type="submit">Submit</button>
+    </form>
+
+    <h2>Available Forms</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for(f <- forms) {
+                <tr>
+                    <td>@f.id</td>
+                    <td>@f.name</td>
+                    <td>@f.description</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+}
